@@ -17,7 +17,7 @@ public class Generic : MonoBehaviour
         public int age;
     }
 
-    public class MyList<Titem>
+    public class MyList<Titem/*, T2, T3*/>
     {
         private Titem[] array = new Titem[4];
         public int count { get; }
@@ -29,7 +29,7 @@ public class Generic : MonoBehaviour
         {
 
         }
-        public void Remove(int item) { }
+        public void Remove(Titem item) { }
         public void Clear() { }
         public void IndexOf(Titem item)
         {
@@ -37,7 +37,7 @@ public class Generic : MonoBehaviour
         }
         public void RemoveAt(Titem index) { }
     }
-    public void Test<T>(ref T i)
+    public void Test<T>(ref T i) // where T : class
     {
 
     }
@@ -52,7 +52,7 @@ public class Generic : MonoBehaviour
         List<MyClass> standartList = new List<MyClass>();
         Test<int>(ref i);
 
-        MyList<MyClass> myList = new MyList<MyClass>();
+        MyList<MyClass/*, uint, float*/> myList = new MyList<MyClass/*, uint, float*/>();
         myList.Push(new MyClass());
     }
 }
