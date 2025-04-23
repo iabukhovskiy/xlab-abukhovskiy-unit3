@@ -12,10 +12,12 @@ namespace TZ
         {
             m_particleSystem.Play();
         }
+
         public void StopFX()
         {
             m_particleSystem.Stop();
         }
+
         public void Start()
         {
             m_particleSystem.Stop();

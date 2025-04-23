@@ -20,12 +20,11 @@ namespace TZ
             {
                 Debug.Log("Z key down");
                 cloudController.Action();
-
             }
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Debug.Log("Space key down");
-                foreach (var villager in villagers)
+                foreach(var villager in villagers)
                 {
                     villager.ChangeTool();
                 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace TZ
@@ -14,7 +15,6 @@ namespace TZ
         public void Action()
         {
             Debug.Log("Cloud", this);
-
             if (m_moved)
             {
                 return;
@@ -22,18 +22,23 @@ namespace TZ
             m_moved = true;
             cloud.StopFX();
             m_targetIndex++;
-            if (m_targetIndex >= targets.Length) { m_targetIndex = 0; }
+            if (m_targetIndex >= targets.Length)
+            {
+                m_targetIndex = 0;
+            }
         }
+
         public void Update()
         {
             if (!m_moved)
-            { return; }
-
-            Transform target = targets[m_targetIndex]; 
+            {
+                return;
+            }
+            
+            Transform target = targets[m_targetIndex];
             Vector3 targetPosition = new Vector3(target.position.x, cloud.transform.position.y, target.position.z);
             Vector3 offset = (targetPosition - cloud.transform.position).normalized * Time.deltaTime * moveSpeed;
-
-            if (Vector3.Distance(cloud.transform.position, targetPosition) < 0.1f)
+            if(Vector3.Distance(cloud.transform.position, targetPosition) < offset.magnitude)
             {
                 cloud.transform.position = targetPosition;
                 m_moved = false;
@@ -41,7 +46,7 @@ namespace TZ
             }
             else
             {
-                cloud.transform.Translate(offset, Space.World);
+                cloud.transform.Translate(offset);
             }
         }
     }
